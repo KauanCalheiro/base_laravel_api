@@ -17,12 +17,12 @@ This project provides a foundational Laravel API implementation, featuring built
 
 2. **Clone the Repository**:
    ```bash
-   git clone https://github.com/KauanCalheiro/auth-api.git
+   git clone https://github.com/KauanCalheiro/base_laravel_api.git
    ```
 
 3. **Navigate to the Project Directory**:
    ```bash
-   cd auth-api
+   cd base_laravel_api
    ```
 
 4. **Install Dependencies**:
