@@ -28,7 +28,7 @@ class ResponseService {
      *
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
      *
      * @date 2024-06-08
      */
@@ -53,7 +53,7 @@ class ResponseService {
      *
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
      *
      * @date 2024-06-08
      */
@@ -84,7 +84,7 @@ class ResponseService {
      *
      * @return boolean
      *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
      *
      * @date 2024-06-12
      */

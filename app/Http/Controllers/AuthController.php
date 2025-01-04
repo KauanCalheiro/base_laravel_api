@@ -44,7 +44,7 @@ class AuthController {
      *
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
      *
      * @date 2024-12-18
      */
@@ -88,7 +88,7 @@ class AuthController {
      *
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
      *
      * @date 2024-12-18
      */
@@ -131,7 +131,7 @@ class AuthController {
      *
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
      *
      * @date 2024-12-18
      */
@@ -155,7 +155,7 @@ class AuthController {
      *
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\Routing\ResponseFactory
      *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
      *
      * @date 2024-12-18
      */
@@ -186,7 +186,7 @@ class AuthController {
      *      }
      *  }
      *
-     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     * @author Kauan Morinel Calheiro <kauan.calheiro@universo.univates.br>
      *
      * @date 2025-01-04
      */
