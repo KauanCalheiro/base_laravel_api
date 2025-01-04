@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "30f21a05-612f-4109-a5d5-04694dc81d80",
+		"_postman_id": "379031e6-ba27-45a9-a9fb-3ba21ceac7f6",
 		"name": "Laravel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37035247"
@@ -37,7 +37,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"admin@admin.br\",\n    \"password\": \"admin\",\n    \"remember_me\": false\n}",
+							"raw": "{\n    \"email\":\"admin@admin\",\n    \"password\": \"admin\",\n    \"remember_me\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -300,10 +300,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
 								"url": {
 									"raw": "{{URL}}/auth/user",
 									"host": [
@@ -362,10 +358,6 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "formdata",
-									"formdata": []
-								},
 								"url": {
 									"raw": "{{URL}}/auth/user",
 									"host": [
@@ -1530,6 +1522,41 @@
 								"1",
 								"revoke",
 								"permission"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Get All Logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/log?paginate=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"log"
+							],
+							"query": [
+								{
+									"key": "paginate",
+									"value": "0",
+									"description": "Use 0 to disable pagination and 1 to enable pagination."
+								}
 							]
 						}
 					},

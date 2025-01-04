@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RequestLogController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,8 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+    Route::get('log', [RequestLogController::class, 'index']);
+
     Route::group(['prefix' => 'auth'], function () {
         Route::get('logout', [AuthController::class, 'logout']);
         Route::get('user', [AuthController::class, 'user']);
@@ -26,5 +29,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('user/{user}/revoke/role', [UserController::class, 'revokeRole']);
     Route::post('user/{user}/assign/permission', [UserController::class, 'assignPermission']);
     Route::post('user/{user}/revoke/permission', [UserController::class, 'revokePermission']);
+
 });
 
