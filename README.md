@@ -1,12 +1,9 @@
-# Base Laravel API with Authentication, Roles, and Permissions
+# Base Laravel API with Authentication, Roles, Permissions and Logs
 
 ---
 
 ## Overview
-
-This project provides a foundational Laravel API implementation, featuring built-in authentication, role-based access control, and permission management. Ideal for projects requiring secure access and user management features.
-
----
+This project offers a foundational Laravel API with built-in authentication, role-based access control, and permission management. It also features detailed request logging, configurable via the `LOG_GET_REQUESTS` environment variable to enable or disable logging of GET requests.
 
 ## How to Start the Project
 
