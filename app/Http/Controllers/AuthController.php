@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Services\ResponseService;
+use Carbon\Carbon;
 use Exception;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -62,13 +64,9 @@ class AuthController {
             $expires = now()->addDay();
 
             return ResponseService::success(
-                [
-                    'access_token' => $user->createToken(self::TOKEN_NAME, ['*'], $expires)->plainTextToken,
-                    'token_type' => self::TOKEN_TYPE,
-                    'expires_at' => $expires->toDateTimeString(),
-                ],
-                __('Successfully created user!'),
-                201
+                data: $this->generateUserTokenResponse($user, $expires),
+                message: __('Successfully created user!'),
+                code: 201
             );
         } catch (Exception $e) {
             return ResponseService::error($e);
@@ -108,17 +106,14 @@ class AuthController {
                 throw new Exception(__('Unauthorized'), 401);
             }
 
-            Auth::user()->tokens()->delete();
+            $user = Auth::user();
+            $user->tokens()->delete();
 
             $expires = $request->remember_me ? now()->addMonth() : now()->addDay();
 
             return ResponseService::success(
-                data: (object) [
-                    'access_token' => Auth::user()->createToken(self::TOKEN_NAME, ['*'], $expires)->plainTextToken,
-                    'token_type' => self::TOKEN_TYPE,
-                    'expires_at' => $expires->toDateTimeString(),
-                ],
-                message: __('Successfully logged in')
+                data: $this->generateUserTokenResponse($user, $expires),
+                message: __('Successfully logged in!')
             );
         } catch (Exception $e) {
             return ResponseService::error($e);
@@ -171,5 +166,42 @@ class AuthController {
         } catch (Exception $e) {
             return ResponseService::error($e);
         }
+    }
+
+    /**
+     * Refresh a token
+     *
+     * @param  Authenticatable $user
+     * @param  Carbon $expires
+     *
+     * @return array{
+     *  user: array{
+     *      id: int,
+     *      name: string,
+     *      email: string,
+     *      token: array{
+     *          access_token: string,
+     *          token_type: string,
+     *          expires_at: string
+     *      }
+     *  }
+     *
+     * @author Kauan Morinel Calheiro <kauan.calheiro@univates.br>
+     *
+     * @date 2025-01-04
+     */
+    private function generateUserTokenResponse(Authenticatable $user, Carbon $expires) {
+        return [
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'token' => [
+                    'access_token' => $user->createToken(self::TOKEN_NAME, ['*'], $expires)->plainTextToken,
+                    'token_type' => self::TOKEN_TYPE,
+                    'expires_at' => $expires->toDateTimeString(),
+                ],
+            ],
+        ];
     }
 }
