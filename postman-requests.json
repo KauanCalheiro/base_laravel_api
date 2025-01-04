@@ -16,7 +16,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.globals.set('TOKEN', pm.response.json().payload.access_token)"
+									"pm.globals.set('TOKEN', pm.response.json().payload.user.token.access_token)"
 								],
 								"type": "text/javascript",
 								"packages": {}
