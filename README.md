@@ -3,6 +3,7 @@
 ---
 
 ## Overview
+
 This project offers a foundational Laravel API with built-in authentication, role-based access control, and permission management. It also features detailed request logging, configurable via the `LOG_GET_REQUESTS` environment variable to enable or disable logging of GET requests.
 
 ## How to Start the Project
@@ -81,6 +82,14 @@ This project offers a foundational Laravel API with built-in authentication, rol
 -   **Request Logging**:
     -   Logs request details including `user`, `method`, `path`, `query`, `body`, `headers`, `IP address`, `user agent`, `response status`, `execution time (in ms) ` and `response`.
     -   Configurable via an environment variable `LOG_GET_REQUESTS` to enable or disable logging of GET requests. Set `LOG_GET_REQUESTS=false`(default) to disable logging of GET requests and `LOG_GET_REQUESTS=true` to enable logging of all requests.
+-   **Dynamic Query Relations**:
+    -   Enables dynamic inclusion of relationships in API responses using URL parameters.
+    -   Use the `with[]` parameter to specify relationships.  
+        Example: `GET {{URL}}/user?with[]=permissions&with[]=roles` includes user permissions and roles in the response.
+    -   Supports nested relationships.  
+        Example: `GET {{URL}}/user?with[]=roles.permissions` fetches roles and their associated permissions.
+    -   Custom handling for the `user` model, while other models use a generalized approach.
+    -   Implemented via the `Relationable` trait for seamless integration.
 -   **API Documentation**:
     -   Exportable Postman collection for testing endpoints.
 
