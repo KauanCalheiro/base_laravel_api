@@ -196,6 +196,8 @@ class AuthController {
                 'id' => $user->id,
                 'name' => $user->name,
                 'email' => $user->email,
+                'roles' => $user->rolesList,
+                'permissions' => $user->permissionsList,
                 'token' => [
                     'access_token' => $user->createToken(self::TOKEN_NAME, ['*'], $expires)->plainTextToken,
                     'token_type' => self::TOKEN_TYPE,

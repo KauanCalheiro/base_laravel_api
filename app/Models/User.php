@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Traits\Filterable;
 use App\Traits\Pageble;
+use App\Traits\Relationable;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, Searchable, Filterable, Pageble, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, Searchable, Filterable, Pageble, SoftDeletes, Relationable;
 
     protected $table = 'users';
 
@@ -38,6 +39,9 @@ class User extends Authenticatable {
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     /**
@@ -84,9 +88,16 @@ class User extends Authenticatable {
      * Override the toArray method to include roles and permissions.
      */
     public function toArray(): array {
-        return array_merge(parent::toArray(), [
-            'roles' => $this->roles_list,
-            'permissions' => $this->permissions_list,
-        ]);
+        $array = parent::toArray();
+
+        if (isset($array['roles'])) {
+            $array['roles'] = $this->getRolesListAttribute();
+        }
+
+        if (isset($array['permissions'])) {
+            $array['permissions'] = $this->getPermissionsListAttribute();
+        }
+
+        return $array;
     }
 }

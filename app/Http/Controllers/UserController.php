@@ -24,6 +24,7 @@ class UserController extends Controller {
             $users = User::query()
                 ->search($request)
                 ->filter($request)
+                ->withRelations($request)
                 ->paginateQuery($request)
                 ->get();
 
@@ -55,6 +56,7 @@ class UserController extends Controller {
      */
     public function show(User $user) {
         try {
+            $user->load(request('with', []));
             return ResponseService::success(data: $user);
         } catch (Exception $e) {
             return ResponseService::error($e);
