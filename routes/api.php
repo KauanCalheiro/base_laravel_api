@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RequestLogController;
 use App\Http\Controllers\RoleController;
