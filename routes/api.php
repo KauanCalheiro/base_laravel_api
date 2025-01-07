@@ -22,6 +22,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::apiResource('role', RoleController::class);
+    Route::post('role/{role}/assign/permission', [RoleController::class, 'assignPermission']);
+    Route::post('role/{role}/revoke/permission', [RoleController::class, 'revokePermission']);
+
     Route::apiResource('permission', PermissionController::class);
 
     ROute::apiResource('user', UserController::class);

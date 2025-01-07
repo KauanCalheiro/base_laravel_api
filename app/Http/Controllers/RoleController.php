@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RolePermissionRequest;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Models\Role;
@@ -69,6 +70,24 @@ class RoleController extends Controller {
                 throw new Exception(__('Error deleting role'));
             }
             return ResponseService::success($role);
+        } catch (Exception $e) {
+            return ResponseService::error($e);
+        }
+    }
+
+    public function assignPermission(RolePermissionRequest $request, Role $role) {
+        try {
+            $role->givePermissionTo($request->permission);
+            return ResponseService::success($role->load('permissions:id,name'));
+        } catch (Exception $e) {
+            return ResponseService::error($e);
+        }
+    }
+
+    public function revokePermission(RolePermissionRequest $request, Role $role) {
+        try {
+            $role->revokePermissionTo($request->permission);
+            return ResponseService::success($role->load('permissions:id,name'));
         } catch (Exception $e) {
             return ResponseService::error($e);
         }
