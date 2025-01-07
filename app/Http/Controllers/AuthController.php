@@ -65,7 +65,7 @@ class AuthController {
 
             return ResponseService::success(
                 data: $this->generateUserTokenResponse($user, $expires),
-                message: __('Successfully created user!'),
+                message: 'Successfully created user!',
                 code: 201
             );
         } catch (Exception $e) {
@@ -103,7 +103,7 @@ class AuthController {
             $credentials = $request->only('email', 'password');
 
             if (!Auth::attempt($credentials)) {
-                throw new Exception(__('Unauthorized'), 401);
+                throw new Exception('Unauthorized', 401);
             }
 
             $user = Auth::user();
@@ -113,7 +113,7 @@ class AuthController {
 
             return ResponseService::success(
                 data: $this->generateUserTokenResponse($user, $expires),
-                message: __('Successfully logged in!')
+                message: 'Successfully logged in!'
             );
         } catch (Exception $e) {
             return ResponseService::error($e);
@@ -162,7 +162,7 @@ class AuthController {
     public function logout(Request $request) {
         try {
             $request->user()->tokens()->delete();
-            return ResponseService::success(data: [], message: __('Successfully logged out'));
+            return ResponseService::success(data: [], message: 'Successfully logged out');
         } catch (Exception $e) {
             return ResponseService::error($e);
         }

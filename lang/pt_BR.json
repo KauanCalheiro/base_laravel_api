@@ -163,5 +163,8 @@
     "Error deleting role": "Erro ao deletar a cargo",
     "male": "Homem",
     "female": "Mulher",
-    "other": "Outro"
+    "other": "Outro",
+    "Successfully logged in!": "Logado com sucesso!",
+    "Successfully logged out": "Deslogado com sucesso!",
+    "Successfully created user!": "Usuário criado com sucesso!"
 }
