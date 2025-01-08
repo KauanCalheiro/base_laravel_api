@@ -8,6 +8,8 @@ use App\Models\Permission;
 use App\Policies\PermissionPolicy;
 use App\Services\ResponseService;
 use Exception;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class PermissionController extends Controller {
     public function __construct() {
@@ -19,7 +21,22 @@ class PermissionController extends Controller {
      */
     public function index() {
         try {
-            return ResponseService::success(Permission::all());
+            $permissions = QueryBuilder::for(Permission::class)
+                ->allowedFilters([
+                    AllowedFilter::exact('id'),
+                    'name',
+                ])
+                ->allowedIncludes([
+                    'roles',
+                ])
+                ->allowedSorts([
+                    'id',
+                    'name',
+                    'description',
+                ])
+                ->jsonPaginate();
+
+            return ResponseService::success(data: $permissions, count: $permissions->toArray()['total']);
         } catch (Exception $e) {
             return ResponseService::error($e);
         }

@@ -14,7 +14,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, Searchable, Filterable, Pageble, SoftDeletes, Relationable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
 
     protected $table = 'users';
 

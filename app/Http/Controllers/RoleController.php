@@ -9,6 +9,8 @@ use App\Models\Role;
 use App\Policies\RolePolicy;
 use App\Services\ResponseService;
 use Exception;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 class RoleController extends Controller {
     public function __construct() {
         $this->authorizeResource(Role::class);
@@ -19,7 +21,21 @@ class RoleController extends Controller {
      */
     public function index() {
         try {
-            return ResponseService::success(Role::all());
+            $roles = QueryBuilder::for(Role::class)
+                ->allowedFilters([
+                    AllowedFilter::exact('id'),
+                    'name',
+                ])
+                ->allowedIncludes([
+                    'permissions',
+                ])
+                ->allowedSorts([
+                    'id',
+                    'name',
+                ])
+                ->jsonPaginate();
+
+            return ResponseService::success(data: $roles, count: $roles->toArray()['total']);
         } catch (Exception $e) {
             return ResponseService::error($e);
         }

@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Services\ResponseService;
 use Exception;
 use Illuminate\Http\Request;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class UserController extends Controller {
     public function __construct() {
@@ -21,19 +23,26 @@ class UserController extends Controller {
      */
     public function index(Request $request) {
         try {
-            $users = User::query()
-                ->search($request)
-                ->filter($request)
-                ->withRelations($request)
-                ->paginateQuery($request)
-                ->get();
+            $users = QueryBuilder::for(User::class)
+                ->allowedFilters([
+                    AllowedFilter::exact('id'),
+                    'name',
+                    'email',
+                    'sex',
+                ])
+                ->allowedIncludes([
+                    'roles',
+                    'permissions',
+                ])
+                ->allowedSorts([
+                    'id',
+                    'name',
+                    'email',
+                    'sex',
+                ])
+                ->jsonPaginate();
 
-            $count = User::query()
-                ->search($request)
-                ->filter($request)
-                ->count();
-
-            return ResponseService::success(data: $users, count: $count);
+            return ResponseService::success(data: $users, count: $users->toArray()['total']);
         } catch (Exception $e) {
             return ResponseService::error($e);
         }
