@@ -7,15 +7,14 @@ use App\Traits\Pageble;
 use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
-class RequestLog extends Model
-{
+class RequestLog extends Model {
     use Filterable, Searchable, Pageble;
 
     protected $table = 'request_logs';
 
     protected $fillable = [
         'id',
-        'ref_user',
+        'user_id',
         'method',
         'path',
         'query',
@@ -34,4 +33,8 @@ class RequestLog extends Model
         'headers' => 'array',
         'response' => 'array'
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

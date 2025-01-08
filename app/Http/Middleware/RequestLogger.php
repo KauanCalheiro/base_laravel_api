@@ -42,7 +42,7 @@ class RequestLogger {
 
     private function logRequest(Request $request, Response $response, float $startTime): void {
         RequestLog::create([
-            'ref_user' => $request->user()?->id,
+            'user_id' => $request->user()?->id,
             'method' => $request->method(),
             'path' => $request->path(),
             'query' => json_encode($request->query()),
