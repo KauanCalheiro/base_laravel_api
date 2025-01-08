@@ -8,8 +8,6 @@ use App\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
 
 class RequestLog extends Model {
-    use Filterable, Searchable, Pageble;
-
     protected $table = 'request_logs';
 
     protected $fillable = [
