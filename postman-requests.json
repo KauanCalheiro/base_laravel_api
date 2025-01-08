@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "379031e6-ba27-45a9-a9fb-3ba21ceac7f6",
+		"_postman_id": "f83d0566-105b-424e-9af2-aa9b3b271f0e",
 		"name": "Laravel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37035247"
@@ -859,12 +859,30 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/role",
+							"raw": "{{URL}}/role?filter[name]=ad&filter[id]=1&include=permissions&sort=id",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"role"
+							],
+							"query": [
+								{
+									"key": "filter[name]",
+									"value": "ad"
+								},
+								{
+									"key": "filter[id]",
+									"value": "1"
+								},
+								{
+									"key": "include",
+									"value": "permissions"
+								},
+								{
+									"key": "sort",
+									"value": "id"
+								}
 							]
 						}
 					},
@@ -1275,12 +1293,59 @@
 							}
 						],
 						"url": {
-							"raw": "{{URL}}/user",
+							"raw": "{{URL}}/user?sort=id&include=permissions,roles",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
 								"user"
+							],
+							"query": [
+								{
+									"key": "filter[id]",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "filter[name]",
+									"value": "mi",
+									"disabled": true
+								},
+								{
+									"key": "filter[email]",
+									"value": "admin",
+									"disabled": true
+								},
+								{
+									"key": "filter[sex]",
+									"value": "m",
+									"disabled": true
+								},
+								{
+									"key": "page[number]",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "page[size]",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "sort",
+									"value": "id",
+									"description": "id asc"
+								},
+								{
+									"key": "sort",
+									"value": "-id",
+									"description": "id desc",
+									"disabled": true
+								},
+								{
+									"key": "include",
+									"value": "permissions,roles"
+								}
 							]
 						}
 					},
