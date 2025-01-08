@@ -82,14 +82,16 @@ This project offers a foundational Laravel API with built-in authentication, rol
 -   **Request Logging**:
     -   Logs request details including `user`, `method`, `path`, `query`, `body`, `headers`, `IP address`, `user agent`, `response status`, `execution time (in ms) ` and `response`.
     -   Configurable via an environment variable `LOG_GET_REQUESTS` to enable or disable logging of GET requests. Set `LOG_GET_REQUESTS=false`(default) to disable logging of GET requests and `LOG_GET_REQUESTS=true` to enable logging of all requests.
--   **Dynamic Query Relations**:
-    -   Enables dynamic inclusion of relationships in API responses using URL parameters.
-    -   Use the `with[]` parameter to specify relationships.  
-        Example: `GET {{URL}}/user?with[]=permissions&with[]=roles` includes user permissions and roles in the response.
-    -   Supports nested relationships.  
-        Example: `GET {{URL}}/user?with[]=roles.permissions` fetches roles and their associated permissions.
-    -   Custom handling for the `user` model, while other models use a generalized approach.
-    -   Implemented via the `Relationable` trait for seamless integration.
+-   **Dynamic Query Filters**:
+    -   Allows filtering, pagination, and sorting of API responses using URL parameters.
+    -   Use the `filter[]` parameter to specify filters.  
+        Example: `GET {{URL}}/user?filter[id]=1&filter[name]=mi&filter[email]=admin&filter[sex]=m` filters users by id, name, email, and sex.
+    -   Use the `page[number]` and `page[size]` parameters for pagination.  
+        Example: `GET {{URL}}/user?page[number]=2&page[size]=5` fetches the second page with 5 users per page.
+    -   Use the `sort` parameter to sort results.  
+        Example: `GET {{URL}}/user?sort=id` sorts users by id in ascending order, and `GET {{URL}}/user?sort=-id` sorts users by id in descending order.
+    -   Use the `include` parameter to include related resources.  
+        Example: `GET {{URL}}/user?include=permissions,roles` includes user permissions and roles in the response.
 -   **API Documentation**:
     -   Exportable Postman collection for testing endpoints.
 
@@ -136,3 +138,4 @@ This project offers a foundational Laravel API with built-in authentication, rol
 
 -   **Code Customization**:
     -   Extend the existing roles and permissions as per your application's requirements.
+
