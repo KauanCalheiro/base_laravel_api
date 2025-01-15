@@ -1,10 +1,10 @@
-# Base Laravel API with Authentication, Roles, Permissions and Logs
+# Base Laravel API with Authentication, Roles, Permissions, Logs, and Search
 
 ---
 
 ## Overview
 
-This project offers a foundational Laravel API with built-in authentication, role-based access control, and permission management. It also features detailed request logging, configurable via the `LOG_GET_REQUESTS` environment variable to enable or disable logging of GET requests.
+This project offers a foundational Laravel API with built-in authentication, role-based access control, permission management, and search functionality using Laravel Scout. It also features detailed request logging, configurable via the `LOG_GET_REQUESTS` environment variable to enable or disable logging of GET requests.
 
 ## How to Start the Project
 
@@ -92,6 +92,8 @@ This project offers a foundational Laravel API with built-in authentication, rol
         Example: `GET {{URL}}/user?sort=id` sorts users by id in ascending order, and `GET {{URL}}/user?sort=-id` sorts users by id in descending order.
     -   Use the `include` parameter to include related resources.  
         Example: `GET {{URL}}/user?include=permissions,roles` includes user permissions and roles in the response.
+    -   Use the `filter[search]` parameter for full-text search using Laravel Scout.  
+        Example: `GET {{URL}}/user?filter[search]=john` searches users by the term "john".
 -   **API Documentation**:
     -   Exportable Postman collection for testing endpoints.
 
