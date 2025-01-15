@@ -29,6 +29,7 @@ class UserController extends Controller {
                     'name',
                     'email',
                     'sex',
+                    AllowedFilter::scope('search', 'whereScout')
                 ])
                 ->allowedIncludes([
                     'roles',

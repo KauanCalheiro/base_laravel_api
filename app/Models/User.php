@@ -2,10 +2,7 @@
 
 namespace App\Models;
 
-use App\Traits\Filterable;
-use App\Traits\Pageble;
-use App\Traits\Relationable;
-use App\Traits\Searchable;
+use App\Traits\QueryBuilderSearchable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, SoftDeletes, QueryBuilderSearchable;
 
     protected $table = 'users';
 
@@ -99,5 +96,14 @@ class User extends Authenticatable {
         }
 
         return $array;
+    }
+
+    public function toSearchableArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
     }
 }
